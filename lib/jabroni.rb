@@ -3,6 +3,8 @@
 require_relative "jabroni/version"
 
 module Jabroni
+  Object.extend self # We're enriching object itself, so any object can call `load_extensions`.
+
   def load_extensions(*extensions)
     Loader.new(self).load(*extensions)
   end
@@ -14,8 +16,6 @@ module Jabroni
   autoload :Loader, "jabroni/loader"
 
   module LoadOnInherited
-    extend Jabroni
-
     def inherited(klass)
       super
       klass.load_extensions
