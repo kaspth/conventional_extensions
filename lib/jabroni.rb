@@ -26,3 +26,5 @@ module Jabroni
   end
   alias load_extension load_extensions
 end
+
+defined?(ActiveSupport.on_load) and ActiveSupport.on_load(:active_record) { extend Jabroni.load_on_inherited }
