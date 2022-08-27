@@ -8,16 +8,13 @@ module Jabroni
   autoload :Loader, "jabroni/loader"
 
   class << self
-    def load_extensions() = jabroni_loader.load_all
-    def jabroni_loader() = Loader.new(self)
-
     def inherited(klass)
-      klass.load_extensions
+      Loader.new(klass).load_all
     end
 
-    def require_extensions(*extensions)
-      extensions.each { Loader.new(self).load _1 }
+    def load_extensions(*extensions)
+      Loader.new(self).load extensions
     end
-    alias require_extension require_extensions
+    alias load_extension load_extensions
   end
 end

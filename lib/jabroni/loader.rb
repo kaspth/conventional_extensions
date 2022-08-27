@@ -7,8 +7,10 @@ class Jabroni::Loader
     extension_paths.each { load_one _1 }
   end
 
-  def load(extension)
-    load_one extension_path_for(extension)
+  def load(*extensions)
+    extensions.each do |extension|
+      load_one extension_path_for(extension)
+    end
   end
 
   private
