@@ -15,4 +15,8 @@ class Jabroni::TestLoader < Minitest::Test
   def test_custom_loading_happened
     assert_equal :from_mailroom, Post.new.named_something
   end
+
+  def test_custom_loading_didnt_load_hoisted_extension_twice
+    assert_equal 1, $named_extension_loading_count
+  end
 end
