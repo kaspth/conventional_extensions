@@ -3,13 +3,21 @@ class Jabroni::Loader
     @klass = klass
   end
 
+  def load_all
+    extension_paths.each { load_one _1 }
+  end
+
   def load(extension)
     load_one extension_path_for(extension)
   end
 
   private
+    def extension_paths
+      Dir.glob extension_path_for("*")
+    end
+
     def extension_path_for(extension)
-      File.expand_path "#{@klass.name}/extensions/#{extension}.rb"
+      File.expand_path "#{@klass.name.downcase}/extensions/#{extension}.rb"
     end
 
     def load_one(extension)

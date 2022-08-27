@@ -8,10 +8,11 @@ module Jabroni
   autoload :Loader, "jabroni/loader"
 
   class << self
+    def load_extensions() = jabroni_loader.load_all
+    def jabroni_loader() = Loader.new(self)
+
     def inherited(klass)
-      Dir.glob("#{Dir.pwd}/#{klass.name.downcase}/extensions/*.rb").each do |extension|
-        Loader.new(klass).load File.basename(extension).chomp(".rb")
-      end
+      klass.load_extensions
     end
 
     def require_extensions(*extensions)
