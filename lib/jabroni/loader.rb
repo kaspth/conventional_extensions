@@ -1,7 +1,7 @@
 class Jabroni::Loader
-  def initialize(klass)
+  def initialize(klass, path)
     @klass, @name = klass, klass.name
-    @directory_name = File.expand_path "#{@name.downcase}/extensions/"
+    @directory_name = File.join path.match(/(?=\/extensions|\.rb)/).pre_match, "extensions/"
   end
 
   def load(*extensions)

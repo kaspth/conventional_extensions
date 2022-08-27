@@ -6,7 +6,7 @@ module Jabroni
   Object.extend self # We're enriching object itself, so any object can call `load_extensions`.
 
   def load_extensions(*extensions)
-    Loader.new(self).load(*extensions)
+    Loader.new(self, caller_locations(1, 1).first.path).load(*extensions)
   end
   alias load_extension load_extensions
 
