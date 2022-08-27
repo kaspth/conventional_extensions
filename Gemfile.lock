@@ -1,0 +1,21 @@
+PATH
+  remote: .
+  specs:
+    jabroni (0.1.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    minitest (5.16.3)
+    rake (13.0.6)
+
+PLATFORMS
+  arm64-darwin-20
+
+DEPENDENCIES
+  jabroni!
+  minitest (~> 5.0)
+  rake (~> 13.0)
+
+BUNDLED WITH
+   2.3.21
