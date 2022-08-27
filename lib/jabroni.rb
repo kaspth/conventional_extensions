@@ -10,20 +10,13 @@ module Jabroni
   class << self
     def inherited(klass)
       Dir.glob("#{Dir.pwd}/#{klass.name.downcase}/extensions/*.rb").each do |extension|
-        klass.load_extension extension
+        Loader.new(klass).load File.basename(extension).chomp(".rb")
       end
     end
 
     def require_extensions(*extensions)
-      extensions.each do |extension|
-        load_extension "#{Dir.pwd}/#{name.downcase}/extensions/#{extension}.rb"
-      end
+      extensions.each { Loader.new(self).load _1 }
     end
     alias require_extension require_extensions
-
-    private
-      def load_extension(extension)
-        Loader.new(self).load extension
-      end
   end
 end
