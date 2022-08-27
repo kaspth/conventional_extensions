@@ -11,6 +11,7 @@ module Jabroni
     extend Jabroni
 
     def inherited(klass)
+      super
       klass.load_extensions
     end
   end
