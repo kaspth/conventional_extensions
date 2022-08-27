@@ -13,14 +13,14 @@ module Jabroni
   # extend Jabroni.load_on_inherited
   def self.load_on_inherited() = LoadOnInherited
 
-  autoload :Loader, "jabroni/loader"
-
   module LoadOnInherited
     def inherited(klass)
       super
       klass.load_extensions
     end
   end
+
+  autoload :Loader, "jabroni/loader"
 end
 
 defined?(ActiveSupport.on_load) and ActiveSupport.on_load(:active_record) { extend Jabroni.load_on_inherited }
