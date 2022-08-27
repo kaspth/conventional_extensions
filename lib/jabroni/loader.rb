@@ -3,14 +3,9 @@ class Jabroni::Loader
     @klass = klass
   end
 
-  def load_all
-    extension_paths.each { load_one _1 }
-  end
-
   def load(*extensions)
-    extensions.each do |extension|
-      load_one extension_path_for(extension)
-    end
+    paths = extensions.empty? ? extension_paths : extensions.map { extension_path_for _1 }
+    paths.each { load_one _1 }
   end
 
   private

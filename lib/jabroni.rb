@@ -21,7 +21,7 @@ module Jabroni
   end
 
   def load_extensions(*extensions)
-    Loader.new(self).load extensions
+    Loader.new(self).load(*extensions)
   end
   alias load_extension load_extensions
 end
