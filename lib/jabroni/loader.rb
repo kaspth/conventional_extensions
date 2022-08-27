@@ -26,7 +26,7 @@ class Jabroni::Loader
         require extension
       when !$LOADED_FEATURES.include?(extension)
         $LOADED_FEATURES << extension
-        class_eval contents, extension, 0
+        @klass.class_eval contents, extension, 0
       end
     end
 end
