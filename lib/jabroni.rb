@@ -5,6 +5,8 @@ require_relative "jabroni/version"
 module Jabroni
   class Error < StandardError; end
 
+  autoload :Loader, "jabroni/loader"
+
   class << self
     def inherited(klass)
       Dir.glob("#{Dir.pwd}/#{klass.name.downcase}/extensions/*.rb").each do |extension|
@@ -21,15 +23,7 @@ module Jabroni
 
     private
       def load_extension(extension)
-        contents = File.read extension
-
-        case
-        when contents.gsub(/^\#.*?\n+/m, "").start_with?("class #{name}")
-          require extension
-        when !$LOADED_FEATURES.include?(extension)
-          $LOADED_FEATURES << extension
-          class_eval contents, extension, 0
-        end
+        Loader.new(self).load extension
       end
   end
 end
