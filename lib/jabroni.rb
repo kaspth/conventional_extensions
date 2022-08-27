@@ -7,8 +7,17 @@ module Jabroni
 
   autoload :Loader, "jabroni/loader"
 
-  def inherited(klass)
-    Loader.new(klass).load_all
+  module LoadOnInherited
+    extend Jabroni
+
+    def inherited(klass)
+      klass.load_extensions
+    end
+  end
+
+  # extend Jabroni.load_on_inherited
+  def self.load_on_inherited
+    LoadOnInherited
   end
 
   def load_extensions(*extensions)
