@@ -3,8 +3,6 @@
 require_relative "jabroni/version"
 
 module Jabroni
-  class Error < StandardError; end
-
   autoload :Loader, "jabroni/loader"
 
   module LoadOnInherited
