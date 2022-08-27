@@ -12,8 +12,9 @@ class Jabroni::TestLoader < Minitest::Test
     assert_predicate Post.new.mailroom, :frozen?
   end
 
-  def test_custom_loading_happened
-    assert_equal :from_mailroom, Post.new.named_something
+  def test_class_method_macros_are_available_in_extensions_and_class
+    assert_equal :from_mailroom, Post.new.named_something_from_mailroom
+    assert_equal :from_post, Post.new.named_something_from_post
   end
 
   def test_custom_loading_didnt_load_hoisted_extension_twice
