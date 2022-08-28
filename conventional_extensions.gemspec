@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.authors = ["Kasper Timm Hansen"]
   spec.email   = ["hey@kaspth.com"]
 
-  spec.summary  = "ConventionalExtensions adds conventionalized extensions for your domain model"
+  spec.summary  = "ConventionalExtensions sets up a file naming convention to extend your domain model"
   spec.homepage = "https://github.com/kaspth/conventional_extensions"
   spec.license  = "MIT"
   spec.required_ruby_version = ">= 3.0.0"
