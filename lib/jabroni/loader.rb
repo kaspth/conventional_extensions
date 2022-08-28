@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Jabroni::Loader
   def initialize(klass, path)
     @klass, @name = klass, klass.name
