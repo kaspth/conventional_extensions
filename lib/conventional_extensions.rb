@@ -6,7 +6,12 @@ module ConventionalExtensions
   Object.extend self # We're enriching object itself, so any object can call `load_extensions`.
 
   def load_extensions(*extensions)
-    Loader.new(self, caller_locations(1, 1).first.path).load(*extensions)
+    loader_defined_before_entrance = defined?(@loader)
+
+    @loader ||= Loader.new(self, caller_locations(1, 1).first.path)
+    @loader.load(*extensions)
+  ensure
+    @loader = nil unless loader_defined_before_entrance
   end
   alias load_extension load_extensions
 
