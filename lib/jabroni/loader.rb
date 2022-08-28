@@ -22,7 +22,7 @@ class Jabroni::Loader
       contents = File.read extension
 
       case
-      when contents.gsub(/^\#.*?\n+/m, "").start_with?("class #{@name}")
+      when contents.match?(/\s*class #{@name}/)
         require extension
       when !$LOADED_FEATURES.include?(extension)
         $LOADED_FEATURES << extension
