@@ -12,6 +12,12 @@ class ConventionalExtensions::TestLoader < Minitest::Test
     assert_predicate Post.new.mailroom, :frozen?
   end
 
+  def test_module_definition_in_extension
+    assert defined?(Post::Submarine)
+    assert_equal :subsubsub, Post.subsubsub
+    assert_equal :subsubsub, Post.new.subsubsub
+  end
+
   def test_class_method_macros_are_available_in_extensions_and_class
     assert_equal :from_mailroom, Post.new.named_something_from_mailroom
     assert_equal :from_post, Post.new.named_something_from_post
