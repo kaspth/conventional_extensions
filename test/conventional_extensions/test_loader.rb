@@ -7,7 +7,7 @@ class ConventionalExtensions::TestLoader < Minitest::Test
   end
 
   def test_nested_methods_added
-    assert_equal :very_rad, Post::Comment.new.radness
+    assert_equal :very_rad, Post::CommentBuddy.new.radness
   end
 
   def test_frozen_string_literals

@@ -5,7 +5,7 @@ require "set"
 class ConventionalExtensions::Loader
   def initialize(klass, path)
     @loaded, @klass, @matcher = Set.new, klass, /\s*class #{klass.name}/
-    @path_format = File.join File.dirname(path), *klass.name.split("::").map(&:downcase), "extensions", "%s.rb"
+    @path_format = File.join File.dirname(path), underscore(klass.name), "extensions", "%s.rb"
   end
 
   def load(*extensions)
@@ -14,6 +14,12 @@ class ConventionalExtensions::Loader
   end
 
   private
+    # Logic borrowed from Active Support:
+    # https://github.com/rails/rails/blob/a2fc96a80cf26c11df3e86e86c1b2b61736af80c/activesupport/lib/active_support/inflector/methods.rb#L99
+    def underscore(name)
+      name.gsub("::", "/").tap { _1.gsub!(/([A-Z]+)(?=[A-Z][a-z])|([a-z\d])(?=[A-Z])/) { ($1 || $2) << "_" } }.tap(&:downcase!)
+    end
+
     def extension_paths
       Dir.glob extension_path_for("*")
     end
