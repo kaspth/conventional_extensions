@@ -3,7 +3,7 @@
 
 # Same with the space above, this line and then the extra newlines below plus the require:
 
-require "jabroni/version"
+require "conventional_extensions/version"
 
 class Post
   load_extension :named

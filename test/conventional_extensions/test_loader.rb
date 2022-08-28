@@ -1,6 +1,6 @@
 require "test_helper"
 
-class Jabroni::TestLoader < Minitest::Test
+class ConventionalExtensions::TestLoader < Minitest::Test
   def test_methods_added
     assert_equal "cool",     Post.cool
     assert_equal "mailroom", Post.new.mailroom

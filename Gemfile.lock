@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    jabroni (0.1.0)
+    conventional_extensions (0.1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -14,7 +14,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  jabroni!
+  conventional_extensions!
   minitest (~> 5.0)
   rake (~> 13.0)
 

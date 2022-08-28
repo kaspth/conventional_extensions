@@ -1,6 +1,6 @@
-# Jabroni
+# ConventionalExtensions
 
-Jabroni autoloads extensions to an object based on a file name convention.
+ConventionalExtensions autoloads extensions to an object based on a file name convention.
 
 ```ruby
 # lib/post.rb
@@ -52,7 +52,7 @@ end
 
 ### Skipping class reopening boilerplate
 
-Jabroni also supports implicit class reopening so you can skip `class Post`, like so:
+ConventionalExtensions also supports implicit class reopening so you can skip `class Post`, like so:
 
 ```ruby
 # lib/post/extensions/mailroom.rb
@@ -86,13 +86,13 @@ end
 
 Whether extensions use explicit or implicit class reopening, `# frozen_string_literal: true` is supported.
 
-### Providing a base class that expects Jabroni loading
+### Providing a base class that expects ConventionalExtensions loading
 
 In case you're planning on setting up a base class, where you're expecting subclasses to use extensions, you can do this:
 
 ```ruby
 class BaseClass
-  extend Jabroni.load_on_inherited # This defines the `inherited` method to auto-call `load_extensions`
+  extend ConventionalExtensions.load_on_inherited # This defines the `inherited` method to auto-call `load_extensions`
 end
 
 class Subclass < BaseClass
@@ -137,11 +137,11 @@ end
 
 Both the `Post::Cool` and `Post::Mailroom` modules are here immediately loaded (via Zeitwerks file naming conventions) and included. More often than not they're never referred to again, so they're practically implicit modules, yet defined explicitly with a fair bit of DSL on top.
 
-With Jabroni you'd write this instead:
+With ConventionalExtensions you'd write this instead:
 
 ```ruby
 # app/models/post.rb
-class Post < ApplicationRecord # Jabroni automatically loads extensions for Active Record models.
+class Post < ApplicationRecord # ConventionalExtensions automatically loads extensions for Active Record models.
 end
 
 # app/models/post/extensions/cool.rb
@@ -165,11 +165,11 @@ end
 
 Install the gem and add to the application's Gemfile by executing:
 
-    $ bundle add jabroni
+    $ bundle add conventional_extensions
 
 If bundler is not being used to manage dependencies, install the gem by executing:
 
-    $ gem install jabroni
+    $ gem install conventional_extensions
 
 ## Development
 
@@ -179,7 +179,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/jabroni.
+Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/conventional_extensions.
 
 ## License
 

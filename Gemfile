@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-# Specify your gem's dependencies in jabroni.gemspec
+# Specify your gem's dependencies in conventional_extensions.gemspec
 gemspec
 
 gem "rake", "~> 13.0"

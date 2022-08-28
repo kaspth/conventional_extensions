@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Jabroni::Loader
+class ConventionalExtensions::Loader
   def initialize(klass, path)
     @klass, @name = klass, klass.name
     @directory_name = File.join path.match(/(?=\/extensions|\.rb)/).pre_match, "extensions/"

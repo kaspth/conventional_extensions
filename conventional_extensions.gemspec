@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-require_relative "lib/jabroni/version"
+require_relative "lib/conventional_extensions/version"
 
 Gem::Specification.new do |spec|
-  spec.name    = "jabroni"
-  spec.version = Jabroni::VERSION
+  spec.name    = "conventional_extensions"
+  spec.version = ConventionalExtensions::VERSION
   spec.authors = ["Kasper Timm Hansen"]
   spec.email   = ["hey@kaspth.com"]
 
-  spec.summary  = "Jabroni adds conventionalized extensions for your domain model"
-  spec.homepage = "https://github.com/kaspth/jabroni"
+  spec.summary  = "ConventionalExtensions adds conventionalized extensions for your domain model"
+  spec.homepage = "https://github.com/kaspth/conventional_extensions"
   spec.license  = "MIT"
   spec.required_ruby_version = ">= 3.0.0"
 
