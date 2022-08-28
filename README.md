@@ -1,8 +1,8 @@
 # ConventionalExtensions
 
-ConventionalExtensions allows splitting up class definitions based on convention, analogous to `ActiveSupport::Concern` use in practice.
+ConventionalExtensions allows splitting up class definitions based on convention, similar to `ActiveSupport::Concern`'s use.
 
-You call `load_extensions` right after the class is originally defined:
+The entry point is to call `load_extensions` right after a class is originally defined:
 
 ```ruby
 # lib/post.rb
@@ -13,7 +13,7 @@ end
 
 ### Defining an extension
 
-Since the loading above happens after the `Post` constant has been defined, we can reopen the class in our extension:
+Since the loading above happens after the `Post` constant has been defined, we can reopen `Post` in an extension:
 
 ```ruby
 # lib/post/extensions/mailroom.rb
@@ -24,11 +24,11 @@ class Post # <- Post is reopened here and so there's no superclass mismatch erro
 end
 ```
 
-Now, `Post.new.mailroom` works and `Post.instance_method(:mailroom).source_location` points to the right extension file and line.
+Now, `Post.new.mailroom` works and `Post.instance_method(:mailroom).source_location` points to the extension file and line.
 
 #### Defining a class method in an extension
 
-Since we're reopening the class we can also define class methods directly:
+Since we're reopening `Post` we can also define class methods directly:
 
 ```ruby
 # lib/post/extensions/cool.rb
@@ -39,9 +39,9 @@ class Post
 end
 ```
 
-Now, `Post.cool` works and `Post.method(:cool).source_location` points to the right extension file and line.
+Now, `Post.cool` works and `Post.method(:cool).source_location` points to the extension file and line.
 
-Note, any class method macro extensions are now available within the top-level Post definition too:
+Note, any class method macro extensions are now available within the top-level `Post` definition too:
 
 ```ruby
 # lib/post.rb
@@ -63,7 +63,7 @@ def mailroom
 end
 ```
 
-With this, `Post.new.mailroom` still works and `Post.instance_method(:mailroom).source_location` points to the right extension file and line.
+With this, `Post.new.mailroom` still works and `Post.instance_method(:mailroom).source_location` points to the extension file and line.
 
 ### Resolve dependencies with load hoisting
 
