@@ -1,11 +1,13 @@
 # ConventionalExtensions
 
-ConventionalExtensions autoloads extensions to an object based on a file name convention.
+ConventionalExtensions allows splitting up class definitions based on convention, analogous to `ActiveSupport::Concern` use in practice.
+
+You call `load_extensions` right after the class is originally defined:
 
 ```ruby
 # lib/post.rb
 class Post < SomeSuperclass
-  load_extensions # Will load every Ruby file under `lib/post/extensions`.
+  load_extensions # Loads every Ruby file under `lib/post/extensions/*.rb`.
 end
 ```
 
@@ -22,7 +24,7 @@ class Post # <- Post is reopened here and so there's no superclass mismatch erro
 end
 ```
 
-Now, `Post.new.mailroom` works and `Post.instance_method(:mailroom).source_location` still points to the right file and line.
+Now, `Post.new.mailroom` works and `Post.instance_method(:mailroom).source_location` points to the right extension file and line.
 
 #### Defining a class method in an extension
 
@@ -37,9 +39,9 @@ class Post
 end
 ```
 
-Now, `Post.cool` works and `Post.method(:cool).source_location` still points to the right file and line.
+Now, `Post.cool` works and `Post.method(:cool).source_location` points to the right extension file and line.
 
-Note, any class method macro extensions are available within the top-level Post definition too:
+Note, any class method macro extensions are now available within the top-level Post definition too:
 
 ```ruby
 # lib/post.rb
@@ -52,7 +54,7 @@ end
 
 ### Skipping class reopening boilerplate
 
-ConventionalExtensions also supports implicit class reopening so you can skip `class Post`, like so:
+ConventionalExtensions also supports implicit class reopening by automatically using `Post.class_eval` so you can skip `class Post`, like so:
 
 ```ruby
 # lib/post/extensions/mailroom.rb
@@ -61,16 +63,16 @@ def mailroom
 end
 ```
 
-With this, `Post.new.mailroom` still works and `Post.instance_method(:mailroom).source_location` still points to right file and line.
+With this, `Post.new.mailroom` still works and `Post.instance_method(:mailroom).source_location` points to the right extension file and line.
 
-### Resolve dependencies with a manual `load_extensions`
+### Resolve dependencies with load hoisting
 
-In case you need to have more fine grained control over the loading, you can call `load_extensions` from within an extension:
+In case you need to have more fine grained control over the loading, you can call `load_extensions` or `load_extension` from within an extension:
 
 ```ruby
 # lib/post/extensions/mailroom.rb
 load_extension :named
-named :sup # We're depending on the class method macro from the `named` extension, and hoisting the loading.
+named :sup # We're depending on the `named` class method macro from the `named` extension, and hoisting the loading.
 
 def mailroom
   …
@@ -88,15 +90,15 @@ Whether extensions use explicit or implicit class reopening, `# frozen_string_li
 
 ### Providing a base class that expects ConventionalExtensions loading
 
-In case you're planning on setting up a base class, where you're expecting subclasses to use extensions, you can do this:
+In case you're setting up a base class, where you're expecting subclasses to use extensions, you can do:
 
 ```ruby
 class BaseClass
-  extend ConventionalExtensions.load_on_inherited # This defines the `inherited` method to auto-call `load_extensions`
+  extend ConventionalExtensions.load_on_inherited # This calls `load_extensions` automatically in the `inherited` hook.
 end
 
 class Subclass < BaseClass
-  # No need to write `load_extensions` here
+  # No need to write `load_extensions` here, it's called already.
 end
 ```
 
