@@ -6,6 +6,10 @@ class ConventionalExtensions::TestLoader < Minitest::Test
     assert_equal "mailroom", Post.new.mailroom
   end
 
+  def test_nested_methods_added
+    assert_equal :very_rad, Post::Comment.new.radness
+  end
+
   def test_frozen_string_literals
     refute_predicate Post.thawed_boi, :frozen?
     assert_predicate Post.cool, :frozen?
