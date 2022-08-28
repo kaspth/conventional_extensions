@@ -4,10 +4,8 @@ require "set"
 
 class ConventionalExtensions::Loader
   def initialize(klass, path)
-    @klass, @name = klass, klass.name
+    @loaded, @klass, @matcher = Set.new, klass, /\s*class #{klass.name}/
     @directory_name = File.join path.chomp(".rb"), "extensions"
-
-    @loaded = Set.new
   end
 
   def load(*extensions)
@@ -26,7 +24,7 @@ class ConventionalExtensions::Loader
 
     def load_one(extension)
       if @loaded.add?(extension)
-        if contents = File.read(extension) and contents.match?(/\s*class #{@name}/)
+        if contents = File.read(extension) and contents.match?(@matcher)
           ::Kernel.load extension
         else
           @klass.class_eval contents, extension, 0
