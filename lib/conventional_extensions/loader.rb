@@ -5,7 +5,7 @@ require "set"
 class ConventionalExtensions::Loader
   def initialize(klass, path)
     @klass, @name = klass, klass.name
-    @directory_name = File.join path.chomp(".rb"), "extensions/"
+    @directory_name = File.join path.chomp(".rb"), "extensions"
 
     @loaded = Set.new
   end
@@ -21,7 +21,7 @@ class ConventionalExtensions::Loader
     end
 
     def extension_path_for(extension)
-      @directory_name + "#{extension}.rb"
+      File.join @directory_name, "#{extension}.rb"
     end
 
     def load_one(extension)
