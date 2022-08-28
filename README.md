@@ -163,7 +163,9 @@ class Post
 end
 ```
 
-For multi-model concerns in `app/models/concerns`, you'd need modules or `ActiveSupport::Concern` to help with that.
+There are places where concerns are more suited:
+* Multi-model concerns in `app/models/concerns`, you'd need modules to help with that.
+* Needing to include multiple levels of modules and have them all inserted directly on the base class, concerns have this built in, but ConventionalExtensions can't support that. It's a rare use case nonetheless.
 
 ## Installation
 
