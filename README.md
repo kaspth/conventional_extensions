@@ -104,7 +104,7 @@ end
 
 ## A less boilerplate heavy alternative to `ActiveSupport::Concern` for Active Records
 
-Typically, when writing an app domain model with `ActiveSupport::Concern` you end defining an object graph like this:
+Typically, when writing an app domain model with `ActiveSupport::Concern` your object graph looks like this:
 
 ```ruby
 # app/models/post.rb
@@ -137,7 +137,7 @@ module Post::Mailroom
 end
 ```
 
-Both the `Post::Cool` and `Post::Mailroom` modules are here immediately loaded (via Zeitwerks file naming conventions) and included. More often than not they're never referred to again, so they're practically implicit modules, yet defined explicitly with a fair bit of DSL on top.
+Both `Post::Cool` and `Post::Mailroom` are immediately loaded (via Zeitwerk's file naming conventions) & included. Most often these concern modules are never referred to again, so they're practically implicit modules, yet defined with tricky DSL.
 
 With ConventionalExtensions you'd write this instead:
 
@@ -162,6 +162,8 @@ class Post
   end
 end
 ```
+
+For multi-model concerns in `app/models/concerns`, you'd need modules or `ActiveSupport::Concern` to help with that.
 
 ## Installation
 
