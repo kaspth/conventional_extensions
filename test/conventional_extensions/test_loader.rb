@@ -30,4 +30,8 @@ class ConventionalExtensions::TestLoader < Minitest::Test
   def test_custom_loading_didnt_load_hoisted_extension_twice
     assert_equal 1, $named_extension_loading_count
   end
+
+  def test_active_record_doesnt_need_to_call_load_extensions
+    assert_equal :extension, Record.extension
+  end
 end

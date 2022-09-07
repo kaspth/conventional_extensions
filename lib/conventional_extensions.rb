@@ -6,7 +6,7 @@ module ConventionalExtensions
   Object.extend self # We're enriching object itself, so any object can call `load_extensions`.
 
   def load_extensions(*extensions)
-    @loader = Loader.new(self, caller_locations(1, 1).first.path) unless loader_defined_before_entrance = defined?(@loader)
+    @loader = Loader.new(self, Object.const_source_location(name).first) unless loader_defined_before_entrance = defined?(@loader)
     @loader.load(*extensions)
   ensure
     @loader = nil unless loader_defined_before_entrance
