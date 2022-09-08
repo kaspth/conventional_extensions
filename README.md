@@ -1,6 +1,18 @@
 # ConventionalExtensions
 
-ConventionalExtensions allows splitting up class definitions based on convention, similar to `ActiveSupport::Concern`'s use.
+![Gem](https://img.shields.io/gem/v/conventional_extensions) ![GitHub](https://img.shields.io/github/license/kaspth/conventional_extensions)
+
+[![conventionalextensions-logo.png](https://i.postimg.cc/d0B9X1Tz/conventionalextensions-logo.png)](https://postimg.cc/cKvYtdhm)
+
+**ConventionalExtensions is to simplify your Domain Model** by giving you a way to group methods together in a separate file while keeping them under the same class model.
+
+[![conventionalextensionsdemo.gif](https://i.postimg.cc/V6DhPg2B/conventionalextensionsdemo.gif)](https://postimg.cc/k6RsxQJB)
+
+- Works with any of your Ruby projects including Rails.
+
+- Can be used as an alternative to `ActiveSupport::Concern` for one model concerns.
+
+## Usage
 
 The entry point is to call `load_extensions` right after a class is originally defined:
 
