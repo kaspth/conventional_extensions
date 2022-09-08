@@ -2,7 +2,8 @@
 
 ![Gem](https://img.shields.io/gem/v/conventional_extensions) ![GitHub](https://img.shields.io/github/license/kaspth/conventional_extensions)
 
-[![conventionalextensions-logo.png](https://i.postimg.cc/d0B9X1Tz/conventionalextensions-logo.png)](https://postimg.cc/cKvYtdhm)
+![image](https://user-images.githubusercontent.com/85266997/189242869-6120490c-e0d4-4b27-911c-4c7f09aeb45e.png)
+
 
 **ConventionalExtensions is to simplify your Domain Model** by giving you a way to group methods together in a separate file while keeping them under the same class model.
 
