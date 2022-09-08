@@ -7,7 +7,7 @@
 
 **ConventionalExtensions is to simplify your Domain Model** by giving you a way to group methods together in a separate file while keeping them under the same class model.
 
-[![conventionalextensionsdemo.gif](https://i.postimg.cc/V6DhPg2B/conventionalextensionsdemo.gif)](https://postimg.cc/k6RsxQJB)
+![conventionalextensionsdemo.gif](https://i.postimg.cc/V6DhPg2B/conventionalextensionsdemo.gif)]
 
 - Works with any of your Ruby projects including Rails.
 
