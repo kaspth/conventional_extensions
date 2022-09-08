@@ -11,7 +11,7 @@ class TestConventionalExtensions < Minitest::Test
     klass = Class.new do
       extend ConventionalExtensions.load_on_inherited
 
-      def self.load_extensions
+      def self.load_extensions(*)
         raise NotImplementedError
       end
     end
