@@ -6,8 +6,12 @@ class ConventionalExtensions::TestLoader < Minitest::Test
     assert_equal "mailroom", Post.new.mailroom
   end
 
-  def test_nested_methods_added
-    assert_equal :very_rad, Post::CommentBuddy.new.radness
+  def test_camel_cased_naming_works
+    assert_predicate CamelCased.new, :loading?
+  end
+
+  def test_loads_nested_extension_in_separate_file
+    assert_equal "Leslie", Organization::User.new.first_name
   end
 
   def test_frozen_string_literals

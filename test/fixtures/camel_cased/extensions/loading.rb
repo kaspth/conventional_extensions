@@ -1,0 +1,3 @@
+def loading?
+  true
+end
