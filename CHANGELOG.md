@@ -1,5 +1,11 @@
 ## [Unreleased]
 
+## [0.3.0] - 2022-09-08
+
+- Fixes defining a nested extension, e.g. `Organization::User` with `app/models/organization/user/extensions/`.
+- Removes support for defining a nested extension within the namespace file. I couldn't unify it with the fix above, so it went.
+
+
 ## [0.2.2] - 2022-09-08
 
 - Fixes Zeitwerk 2.6.0 compatibility issue where extensions wouldn't load and throw an exception. See https://github.com/kaspth/conventional_extensions/commit/7fc25f1e860637e8df9fd0e81e7ca038c8c34aa0

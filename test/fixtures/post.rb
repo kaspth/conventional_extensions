@@ -6,7 +6,7 @@ class Post < SomeSuperclass
 
   named :from_post
 
-  class CommentBuddy
-    load_extensions
-  end
+  # class CommentBuddy
+  #   load_extensions
+  # end
 end
