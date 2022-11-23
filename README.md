@@ -7,7 +7,7 @@ The entry point is to call `load_extensions` right after a class is originally d
 ```ruby
 # lib/post.rb
 class Post < SomeSuperclass
-  load_extensions # Loads every Ruby file under `lib/post/extensions/*.rb`.
+  load_extensions # Loads every Ruby file found with `lib/post/extensions/*.rb`.
 end
 ```
 
@@ -17,7 +17,7 @@ Since the loading above happens after the `Post` constant has been defined, we c
 
 ```ruby
 # lib/post/extensions/mailroom.rb
-class Post # <- Post is reopened here and so there's no superclass mismatch error
+class Post # <- Post is reopened here, so there's no superclass mismatch error
   def mailroom
     puts "you've got mail"
   end
@@ -102,6 +102,17 @@ class Subclass < BaseClass
 end
 ```
 
+This works for Active Record too, and you can add this to your `ApplicationRecord`:
+
+```ruby
+# app/models/application_record.rb
+class ApplicationRecord < ActiveRecord::Base
+  extend ConventionalExtensions.load_on_inherited
+end
+```
+
+Note that you lose support for calling `load_extensions` manually because of the implementation, so it's all or nothing.
+
 ## A less boilerplate heavy alternative to `ActiveSupport::Concern` for Active Records
 
 Typically, when writing an app domain model with `ActiveSupport::Concern` your object graph looks like this:
@@ -143,7 +154,8 @@ With ConventionalExtensions you'd write this instead:
 
 ```ruby
 # app/models/post.rb
-class Post < ApplicationRecord # ConventionalExtensions automatically loads extensions for Active Record models.
+class Post < ApplicationRecord
+  load_extensions # Loads every Ruby file found with `app/models/post/extensions/*.rb`.
 end
 
 # app/models/post/extensions/cool.rb

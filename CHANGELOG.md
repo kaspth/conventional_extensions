@@ -1,5 +1,18 @@
 ## [Unreleased]
 
+- Remove automatic extension loading for Active Records.
+
+  Due to the automatic extension loading in Active Record, there was no way for people to manually call `load_extensions` if they wanted to. And implementation wise there wasn't a way to sort that out. So the automatic loading support is out.
+
+  Though you can get the old behavior back with this, which calls `load_extensions` when a new class inherits from `ApplicationRecord`:
+
+  ```ruby
+  # app/models/application_record.rb
+  class ApplicationRecord < ActiveRecord::Base
+    extend ConventionalExtensions.load_on_inherited
+  end
+  ```
+
 ## [0.3.0] - 2022-09-27
 
 - Fixes defining a nested extension, e.g. `Organization::User` with `app/models/organization/user/extensions/`.
