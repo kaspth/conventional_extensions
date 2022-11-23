@@ -31,5 +31,3 @@ module ConventionalExtensions
 
   autoload :Loader, "conventional_extensions/loader"
 end
-
-defined?(ActiveSupport.on_load) and ActiveSupport.on_load(:active_record) { extend ConventionalExtensions.load_on_inherited }
