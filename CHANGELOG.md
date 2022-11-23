@@ -19,6 +19,8 @@
   end
   ```
 
+  Fixed #10.
+
 ## [0.3.0] - 2022-09-27
 
 - Fixes defining a nested extension, e.g. `Organization::User` with `app/models/organization/user/extensions/`.
