@@ -31,3 +31,5 @@ module ConventionalExtensions
 
   autoload :Loader, "conventional_extensions/loader"
 end
+
+require_relative "conventional_extensions/railtie" if defined?(Rails::Railtie)

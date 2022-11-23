@@ -1,5 +1,11 @@
 ## [Unreleased]
 
+- Ignore extensions folders automatically in Rails.
+
+  We've added a Railtie which automatically ignores every extensions folder by running `Rails.autoloaders.main.ignore "**/extensions/**.rb"`.
+
+  Fixed #8.
+
 - Remove automatic extension loading for Active Records.
 
   Due to the automatic extension loading in Active Record, there was no way for people to manually call `load_extensions` if they wanted to. And implementation wise there wasn't a way to sort that out. So the automatic loading support is out.

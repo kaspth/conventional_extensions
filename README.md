@@ -179,6 +179,12 @@ There are places where concerns are more suited:
 * Multi-model concerns in `app/models/concerns`, you'd need modules to help with that.
 * Needing to include multiple levels of modules and have them all inserted directly on the base class, concerns have this built in, but ConventionalExtensions can't support that. It's a rare use case nonetheless.
 
+## Using with Zeitwerk
+
+If you're using Zeitwerk to eager load your app or lib code, you may need to ignore the nested extensions folders so Zeitwerk won't expect them to contain code following its naming conventions.
+
+We handle this for Rails through `Rails.autoloaders.main.ignore "**/extensions/**.rb"`. Feel free to use this `ignore` call on your Zeitwerk loader.
+
 ## Installation
 
 Install the gem and add to the application's Gemfile by executing:
