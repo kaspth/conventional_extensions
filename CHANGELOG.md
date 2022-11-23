@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+## [0.4.0] - 2022-11-23
+
 - Ignore extensions folders automatically in Rails.
 
   We've added a Railtie which automatically ignores every extensions folder by running `Rails.autoloaders.main.ignore "**/extensions/**.rb"`.

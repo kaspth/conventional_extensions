@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    conventional_extensions (0.3.0)
+    conventional_extensions (0.4.0)
 
 GEM
   remote: https://rubygems.org/
